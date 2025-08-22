@@ -127,7 +127,7 @@ export default function Page() {
                   {/* Spacer */}
        
         {/* Modal Lead */}
-        <LeadFormModal open={openForm} onOpenChange={setOpenForm} baseUrl="https://mooneymaker.co/home?ref=64349" />
+        <LeadFormModal open={openForm} onOpenChange={setOpenForm} baseUrl={process.env.NEXT_PUBLIC_BASE_URL} />
       </main>
     )
   }
