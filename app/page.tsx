@@ -208,7 +208,7 @@ export default function Page() {
 
 
       {/* Modal */}
-      <LeadFormModal open={openForm} onOpenChange={setOpenForm} baseUrl="https://mooneymaker.co/home?ref=64349" />
+      <LeadFormModal open={openForm} onOpenChange={setOpenForm} baseUrl={process.env.NEXT_PUBLIC_BASE_URL} />
 
       {/* Estilo para giro lento (solo si usas animate-spin-slow) */}
       <style jsx global>{`
