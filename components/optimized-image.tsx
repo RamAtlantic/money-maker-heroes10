@@ -82,7 +82,7 @@ export function OptimizedImage({
     }
   }
 
-  const instagramConfig = instagramOptimized ? getInstagramConfig() : {}
+  const instagramConfig = instagramOptimized ? getInstagramConfig() : { width: undefined, height: undefined, sizes: undefined }
 
   const handleLoad = () => {
     setIsLoaded(true)
