@@ -1,15 +1,23 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { OptimizedImage } from "./optimized-image"
 
 interface GifBackgroundProps {
   src: string
   fallbackSrc?: string
   className?: string
   alt?: string
+  priority?: boolean
 }
 
-export function GifBackground({ src, fallbackSrc, className = "", alt = "Background animation" }: GifBackgroundProps) {
+export function GifBackground({
+  src,
+  fallbackSrc,
+  className = "",
+  alt = "Background animation",
+  priority = false
+}: GifBackgroundProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [hasError, setHasError] = useState(false)
 
@@ -22,27 +30,36 @@ export function GifBackground({ src, fallbackSrc, className = "", alt = "Backgro
 
   if (hasError && fallbackSrc) {
     return (
-      <img
+      <OptimizedImage
         src={fallbackSrc}
         alt={alt}
-        className={`w-full h-full object-cover ${className}`}
-        loading="lazy"
+        fill
+        className={`object-cover ${className}`}
+        priority={priority}
+        quality={85}
+        sizes="100vw"
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
       />
     )
   }
 
   return (
     <div className={`relative w-full h-full ${className}`}>
-      {!isLoaded && (
+      {!isLoaded && !priority && (
         <div className="absolute inset-0 bg-black animate-pulse" />
       )}
-      <img
+      <OptimizedImage
         src={src}
         alt={alt}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${
+        fill
+        className={`object-cover transition-opacity duration-300 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
-        loading="lazy"
+        priority={priority}
+        quality={85}
+        sizes="100vw"
+        onLoad={() => setIsLoaded(true)}
         onError={() => setHasError(true)}
       />
     </div>

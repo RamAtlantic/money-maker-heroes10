@@ -114,6 +114,46 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
           rel="stylesheet"
         />
+
+        {/* Preload de imágenes críticas para mejor performance */}
+        <link
+          rel="preload"
+          href="/lctm.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/button.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/rulet2.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/button-2.png"
+          as="image"
+          type="image/png"
+          fetchPriority="high"
+        />
+
+        {/* DNS prefetch para dominios externos de imágenes */}
+        <link rel="dns-prefetch" href="https://pub-581d9beed9654163970c769982a0193b.r2.dev" />
+        <link rel="preconnect" href="https://pub-581d9beed9654163970c769982a0193b.r2.dev" />
+
+        {/* Optimizaciones para redes sociales */}
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image:width" content="1200" />
+        <meta name="twitter:image:height" content="630" />
       </head>
       {/* Aplicamos la clase de Montserrat al body */}
       <body className={montserrat.className}>

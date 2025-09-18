@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Loader2 } from "lucide-react"
 import { LeadFormModal } from "@/components/modal-lead"
+import { OptimizedImage, OptimizedLogo, OptimizedButton, InstagramOptimizedImage } from "@/components/optimized-image"
 
 // Componente simple para GIFs de fondo optimizados
 function GifBackground({
@@ -121,12 +122,13 @@ export default function Page() {
         />
 
         {/* Logo principal (más grande en desktop) */}
-        <img
+        <OptimizedLogo
           src={`/lctm.png`}
           alt="Logo principal"
           width={620}
           height={140}
-          className="absolute top-70 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain z-10"
+          className="absolute top-70 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+          priority={true}
         />
 
         {/* Botón CTA (desktop) */}
@@ -136,12 +138,12 @@ export default function Page() {
               onClick={handleButton}
               className="bg-transparent text-black py-2 rounded-md cursor-pointer hover:scale-125 transition-transform duration-300"
             >
-              <img
+              <OptimizedButton
                 src={`/button.png`}
                 alt="Botón principal"
                 width={560}
                 height={160}
-                className="object-contain pointer-events-none select-none"
+                className="pointer-events-none select-none"
               />
             </button>
           )}
@@ -193,23 +195,24 @@ export default function Page() {
       />
 
       {/* Imagen base */}
-      <img
+      <OptimizedLogo
         src={`/lctm.png`}
         alt="Logo principal"
         width={300}
         height={100}
-        className="absolute top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 object-contain z-10"
+        className="absolute top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+        priority={true}
       />
 
       {showImages && (
         <div className="absolute top-40 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
           <div className="animate-spin-slow">
-            <img
+            <InstagramOptimizedImage
               src={`/rulet2.png`}
               alt="Ruleta girando"
-              width={300}
-              height={300}
+              aspectRatio="square"
               className="object-contain pointer-events-none select-none"
+              priority={true}
             />
           </div>
         </div>
@@ -218,12 +221,12 @@ export default function Page() {
       <div className="absolute top-[38%]  left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button onClick={handleButton} className="bg-transparent text-black py-2 rounded-md ">
-            <img
+            <OptimizedButton
               src={`/button.png`}
-              alt="Logo principal"
+              alt="Botón principal"
               width={300}
               height={100}
-              className="object-contain pointer-events-none select-none"
+              className="pointer-events-none select-none"
             />
           </button>
         )}
@@ -243,12 +246,12 @@ export default function Page() {
       <div className="absolute -bottom-0 flex justify-center items-center w-full z-20">
         {showButton && !openForm && (
           <button onClick={handleButton} className="bg-transparent text-black py-2 rounded-md">
-            <img
+            <OptimizedButton
               src={`/button-2.png`}
-              alt="Logo principal"
+              alt="Botón secundario"
               width={300}
               height={100}
-              className="object-contain pointer-events-none select-none"
+              className="pointer-events-none select-none"
             />
           </button>
         )}
