@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { OptimizedImage } from "./optimized-image"
 
 interface GifBackgroundProps {
   src: string
@@ -28,18 +27,22 @@ export function GifBackground({
     img.src = src
   }, [src])
 
+  const handleLoad = () => {
+    setIsLoaded(true)
+  }
+
+  const handleError = () => {
+    setHasError(true)
+  }
+
   if (hasError && fallbackSrc) {
     return (
-      <OptimizedImage
+      <img
         src={fallbackSrc}
         alt={alt}
-        fill
-        className={`object-cover ${className}`}
-        priority={priority}
-        quality={85}
-        sizes="100vw"
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
+        className={`w-full h-full object-cover ${className}`}
+        onLoad={handleLoad}
+        onError={handleError}
       />
     )
   }
@@ -49,18 +52,15 @@ export function GifBackground({
       {!isLoaded && !priority && (
         <div className="absolute inset-0 bg-black animate-pulse" />
       )}
-      <OptimizedImage
+      <img
         src={src}
         alt={alt}
-        fill
-        className={`object-cover transition-opacity duration-300 ${
+        className={`w-full h-full object-cover transition-opacity duration-300 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
-        priority={priority}
-        quality={85}
-        sizes="100vw"
-        onLoad={() => setIsLoaded(true)}
-        onError={() => setHasError(true)}
+        onLoad={handleLoad}
+        onError={handleError}
+        style={{ width: '100%', height: '100%' }}
       />
     </div>
   )
